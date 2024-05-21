@@ -1,0 +1,3 @@
+C:/Users/user/ProjektIO/cmake-build-debug/CMakeFiles/ProjektIO.dir
+C:/Users/user/ProjektIO/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/user/ProjektIO/cmake-build-debug/CMakeFiles/rebuild_cache.dir
