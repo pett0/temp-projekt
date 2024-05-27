@@ -131,6 +131,10 @@ Klient::przegladajSamochody(Katalog_samochodowy *katalog_samochodowy) {
 
 Rezerwacja *Klient::rezerwujSamochod(Klient *klient, Samochod *samochod,
                                      int ilosc_dni) {
+  if (samochod->getCzyDostepny() == false) {
+    cout << "Samochod jest niedostepny" << endl;
+    return nullptr;
+  }
   if (klient->stan_konta >= samochod->getCenaZaRezerwacje() * ilosc_dni) {
     klient->setStan_konta(klient->stan_konta -
                           samochod->getCenaZaRezerwacje() * ilosc_dni);
@@ -148,6 +152,16 @@ Rezerwacja *Klient::rezerwujSamochod(Klient *klient, Samochod *samochod,
 
 Wypozyczenie *Klient::wynajmijSamochod(Klient *klient, Samochod *samochod,
                                        int ilosc_dni) {
+  bool klienta = false;
+  for (auto &x : klient->lista_zarezerwowanych) {
+    if (x.getSamochod() == samochod) {
+      klienta = true;
+    }
+  }
+  if (samochod->getCzyDostepny() == false && klienta == false) {
+    cout << "Samochod jest niedostepny" << endl;
+    return nullptr;
+  }
   if (klient->stan_konta >= samochod->getCenaZaWynajecie() * ilosc_dni) {
     klient->setStan_konta(klient->stan_konta -
                           samochod->getCenaZaWynajecie() * ilosc_dni);
